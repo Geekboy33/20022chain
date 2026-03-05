@@ -1,0 +1,40 @@
+{
+  "name": "20022chain",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3005",
+    "build": "next build",
+    "start": "next start -p 3005",
+    "lint": "next lint",
+    "verify-chain": "node scripts/verify-blockchain.js",
+    "health:check": "powershell -Command \"(Invoke-WebRequest -UseBasicParsing http://localhost:3005/api/health).Content\"",
+    "restart:clean": "powershell -ExecutionPolicy Bypass -File scripts/restart-clean.ps1",
+    "audit:prod": "npm audit --omit=dev",
+    "audit:full": "npm audit"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
+    "better-sqlite3": "^12.6.2",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.15.0",
+    "isolated-vm": "^6.0.2",
+    "lucide-react": "^0.468.0",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^2.6.0",
+    "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/ws": "^8.18.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0"
+  }
+}
