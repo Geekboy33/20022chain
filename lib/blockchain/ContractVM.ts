@@ -4,7 +4,8 @@
 // Supports: state management, token operations, RWA functions
 // ═══════════════════════════════════════════════════════════════
 
-import ivm from 'isolated-vm';
+let ivm: any;
+try { ivm = require('isolated-vm'); } catch { ivm = null; }
 
 export interface ContractState {
   storage: Record<string, any>;
@@ -146,11 +147,12 @@ const CONTRACT_RUNTIME = `
 // ═══════════════════════════════════════════════════
 
 export class ContractVM {
-  private isolate: ivm.Isolate;
+  private isolate: any;
   private memoryLimit: number;
 
   constructor(memoryLimit: number = 32) {
     this.memoryLimit = memoryLimit;
+    if (!ivm) throw new Error('isolated-vm not available');
     this.isolate = new ivm.Isolate({ memoryLimit });
   }
 

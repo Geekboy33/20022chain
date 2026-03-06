@@ -4,7 +4,8 @@
 // Handles: block propagation, tx broadcast, peer discovery, consensus
 // ═══════════════════════════════════════════════════════════════
 
-import { WebSocket, WebSocketServer } from 'ws';
+let WebSocket: any, WebSocketServer: any;
+try { const ws = require('ws'); WebSocket = ws.WebSocket; WebSocketServer = ws.WebSocketServer; } catch { }
 import { getDB } from './Database';
 
 export interface PeerInfo {

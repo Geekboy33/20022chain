@@ -4,8 +4,9 @@
 // Every block, transaction, validator, and ISIN lives on disk.
 // ═══════════════════════════════════════════════════════════════
 
-import Database from 'better-sqlite3';
 import path from 'path';
+let Database: any;
+try { Database = require('better-sqlite3'); } catch { Database = null; }
 import { Transaction, ISO20022Metadata, ISOMessageType, RWAType } from './Transaction';
 import { Block } from './Block';
 import type { Validator, ISINEntry } from './Blockchain';
@@ -133,10 +134,10 @@ const SCHEMA = `
 // ═══════════════════════════════════════════════════
 
 export class ChainDB {
-  private db: Database.Database;
+  private db: any;
 
   constructor() {
-    // Ensure data directory exists
+    if (!Database) throw new Error('better-sqlite3 not available');
     const fs = require('fs');
     const dataDir = path.dirname(DB_PATH);
     if (!fs.existsSync(dataDir)) {
@@ -502,11 +503,18 @@ export class ChainDB {
 // SINGLETON
 // ═══════════════════════════════════════════════════
 
-const globalForDB = globalThis as unknown as { __chainDB?: ChainDB };
+const globalForDB = globalThis as unknown as { __chainDB?: ChainDB; __dbFailed?: boolean };
 
 export function getDB(): ChainDB {
+  if (globalForDB.__dbFailed) throw new Error('SQLite unavailable in this environment');
   if (!globalForDB.__chainDB) {
-    globalForDB.__chainDB = new ChainDB();
+    try {
+      globalForDB.__chainDB = new ChainDB();
+    } catch (e) {
+      globalForDB.__dbFailed = true;
+      console.error('[Database] Failed to initialize SQLite:', (e as Error).message);
+      throw new Error('SQLite unavailable in this environment');
+    }
   }
   return globalForDB.__chainDB;
 }

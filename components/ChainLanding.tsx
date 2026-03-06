@@ -35,7 +35,7 @@ function Reveal({ children, className, delay = 0 }: { children: React.ReactNode;
 
 function SH({ badge, title, sub, light }: { badge: string; title: string; sub?: string; light?: boolean }) {
   return (
-    <div className="max-w-3xl mx-auto text-center mb-20 lg:mb-24">
+    <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-20 lg:mb-24 px-2">
       <div className={cn("inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-[10px] font-bold uppercase tracking-[0.35em]", light ? "bg-white/[0.06] border border-white/[0.08] text-white/90" : "bg-[#0A0A0A]/[0.03] text-[#8b8b94]")}>{badge}</div>
       <h2 className={cn("text-[clamp(1.75rem,5vw,3.25rem)] font-black tracking-tight leading-[1.08]", light ? "text-white" : "")}>{title}</h2>
       {sub && <p className={cn("text-[15px] mt-5 leading-relaxed max-w-xl mx-auto", light ? "text-white/90" : "text-[#6b6b74]")}>{sub}</p>}
@@ -47,11 +47,11 @@ function Addr({ a, tc, full, big }: { a: string; tc: string; full?: boolean; big
   const p = a.split(':');
   const hash = p[3] || '';
   return (
-    <span className={cn("font-mono inline-flex items-center flex-wrap", big ? "text-[13px] sm:text-[14px] gap-0.5" : "text-[11px] sm:text-[12px]")}>
+    <span className={cn("font-mono inline-flex items-center flex-wrap break-all", big ? "text-[11px] sm:text-[14px] gap-0.5" : "text-[10px] sm:text-[12px]")}>
       <span className="text-white/50">archt</span><span className="text-white/30">:</span>
       <span className="font-bold" style={{ color: tc }}>{p[1]}</span><span className="text-white/30">:</span>
-      <span className="text-white font-bold">{p[2]}</span><span className="text-white/30">:</span>
-      <span className="text-white/60">{full ? hash : hash.length > 16 ? hash.slice(0, 16) + '...' : hash}</span>
+      <span className="text-white font-bold break-all">{p[2]}</span><span className="text-white/30">:</span>
+      <span className="text-white/60 break-all">{full ? hash : hash.length > 12 ? hash.slice(0, 12) + '…' : hash}</span>
     </span>
   );
 }
@@ -258,7 +258,7 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
       {/* ═══════════════════════════════════════ */}
       {/* HERO                                    */}
       {/* ═══════════════════════════════════════ */}
-      <section ref={heroRef} className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} className="relative min-h-[80vh] sm:min-h-[92vh] flex items-center justify-center overflow-hidden">
         <GlowOrb className="w-[600px] h-[600px] bg-[#d4a855] -top-40 left-1/4" />
         <GlowOrb className="w-[500px] h-[500px] bg-[#3B82F6] -bottom-20 right-1/4 opacity-20" />
         <GlowOrb className="w-[300px] h-[300px] bg-[#7C3AED] top-1/3 right-[10%] opacity-15" />
@@ -279,10 +279,10 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.25 }}
             className="text-[clamp(0.9rem,2vw,1.125rem)] text-white/35 max-w-2xl mx-auto mb-14 leading-relaxed">{t("hero.subtitle")}</motion.p>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.35 }} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button onClick={onLogin} className="h-14 px-10 bg-white text-[#09090b] text-sm font-bold rounded-2xl hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 flex items-center gap-3">
+            <button onClick={onLogin} className="h-12 sm:h-14 px-8 sm:px-10 bg-white text-[#09090b] text-sm font-bold rounded-2xl hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 flex items-center gap-3 w-full sm:w-auto justify-center">
               {t("hero.launch")} <ArrowRight size={16} />
             </button>
-            <a href="/whitepaper" className="h-14 px-10 border border-white/10 text-white/90 text-sm font-medium rounded-2xl hover:border-white/20 hover:text-white/80 transition-all flex items-center gap-3">
+            <a href="/whitepaper" className="h-12 sm:h-14 px-8 sm:px-10 border border-white/10 text-white/90 text-sm font-medium rounded-2xl hover:border-white/20 hover:text-white/80 transition-all flex items-center gap-3 w-full sm:w-auto justify-center">
               <FileText size={14} /> {t("hero.wp")}
             </a>
           </motion.div>
@@ -290,14 +290,14 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
       </section>
 
       {/* ── Trust Bar ── */}
-      <div className="relative z-10 -mt-16 pb-8">
-        <div className="max-w-5xl mx-auto px-5">
+      <div className="relative z-10 -mt-12 sm:-mt-16 pb-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-5">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.7 }}
-            className="grid grid-cols-3 sm:grid-cols-6 gap-px bg-white/[0.06] rounded-2xl overflow-hidden border border-white/[0.06] backdrop-blur-xl">
+            className="grid grid-cols-3 sm:grid-cols-6 gap-px bg-white/[0.06] rounded-xl sm:rounded-2xl overflow-hidden border border-white/[0.06] backdrop-blur-xl">
             {SPECS.map(s => (
-              <div key={s.l} className="bg-[#09090b]/80 py-5 px-4 text-center hover:bg-white/[0.03] transition-colors">
-                <div className="text-xl sm:text-2xl font-black" style={{ color: s.c }}>{s.v}</div>
-                <div className="text-[9px] text-white/80 uppercase tracking-wider mt-1 font-bold">{s.l}</div>
+              <div key={s.l} className="bg-[#09090b]/80 py-3 sm:py-5 px-2 sm:px-4 text-center hover:bg-white/[0.03] transition-colors">
+                <div className="text-lg sm:text-2xl font-black" style={{ color: s.c }}>{s.v}</div>
+                <div className="text-[8px] sm:text-[9px] text-white/80 uppercase tracking-wider mt-1 font-bold">{s.l}</div>
               </div>
             ))}
           </motion.div>
@@ -307,15 +307,15 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
       {/* ═══════════════════════════════════════ */}
       {/* 12 SUBSYSTEMS — Bento Grid              */}
       {/* ═══════════════════════════════════════ */}
-      <section id="tech" className="py-28 lg:py-36 px-5 lg:px-10">
+      <section id="tech" className="py-16 sm:py-28 lg:py-36 px-4 sm:px-5 lg:px-10">
         <div className="max-w-[1400px] mx-auto">
           <Reveal><SH badge="Architecture" title="12 Subsystems" sub="Modular, independently upgradeable. Each designed, tested, and governed separately." light /></Reveal>
-          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {SUB.map((s, i) => {
               const Icon = s.icon;
               return (
                 <motion.div key={s.name} variants={fadeUp} transition={{ duration: 0.5, ease }}
-                  className={cn("group relative p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/[0.1] transition-all duration-500 overflow-hidden", s.big && "lg:col-span-2")}>
+                  className={cn("group relative p-5 sm:p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/[0.1] transition-all duration-500 overflow-hidden", s.big && "sm:col-span-2")}>
                   <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative z-10">
                     <div className="flex items-center justify-between mb-5">
@@ -335,7 +335,7 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
       {/* ═══════════════════════════════════════ */}
       {/* ADDRESSES                               */}
       {/* ═══════════════════════════════════════ */}
-      <section id="addr" className="py-28 lg:py-36 px-5 lg:px-10 bg-[#0f0f12]">
+      <section id="addr" className="py-16 sm:py-28 lg:py-36 px-4 sm:px-5 lg:px-10 bg-[#0f0f12]">
         <div className="max-w-[1400px] mx-auto">
           <Reveal><SH badge="Human-Readable Identifiers" title="Native Address System" sub="Every address encodes its type, name, and hash. No hex confusion — instantly readable and color-coded." light /></Reveal>
 
@@ -351,7 +351,7 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
           </Reveal>
 
           <Reveal delay={0.15}>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-20">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mb-20">
               {ADDRS.map(a => (
                 <div key={a.type} className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12] hover:bg-white/[0.04] transition-all duration-300">
                   <div className="flex items-center gap-2.5 mb-3"><div className="w-3 h-3 rounded-full" style={{ background: a.c }} /><span className="font-mono text-sm font-bold" style={{ color: a.c }}>{a.type}</span></div>
@@ -387,21 +387,25 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
             <Reveal><div>
               <h3 className="text-lg font-black mb-4 text-white/80">Validator Network</h3>
               <div className="space-y-1.5">{VALS.map(v => (
-                <div key={v.n} className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:border-white/[0.1] transition-all">
-                  <div className="w-7 h-7 rounded-lg bg-[#1D4ED8]/10 flex items-center justify-center shrink-0"><Globe size={12} className="text-[#3B82F6]" /></div>
-                  <div className="flex-1 min-w-0"><p className="text-[12px] font-bold text-white/80">{v.n}</p><p className="text-[10px] text-white/80">{v.r}</p></div>
-                  <div className="hidden sm:block"><Addr a={v.a} tc="#3B82F6" full /></div>
+                <div key={v.n} className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:border-white/[0.1] transition-all">
+                  <div className="flex items-center gap-3">
+                    <div className="w-7 h-7 rounded-lg bg-[#1D4ED8]/10 flex items-center justify-center shrink-0"><Globe size={12} className="text-[#3B82F6]" /></div>
+                    <div className="flex-1 min-w-0"><p className="text-[12px] font-bold text-white/80">{v.n}</p><p className="text-[10px] text-white/80">{v.r}</p></div>
+                  </div>
+                  <div className="mt-2 pl-10 overflow-x-auto"><Addr a={v.a} tc="#3B82F6" full /></div>
                 </div>
               ))}</div>
             </div></Reveal>
             <Reveal delay={0.1}><div>
               <h3 className="text-lg font-black mb-4 text-white/80">Banking & SWIFT</h3>
               <div className="space-y-1.5">{BANKS.map(b => (
-                <div key={b.c} className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:border-white/[0.1] transition-all">
-                  <div className="w-7 h-7 rounded-lg bg-[#059669]/10 flex items-center justify-center shrink-0"><span className="text-[10px] font-black text-[#10B981]">{b.c.slice(0,2)}</span></div>
-                  <div className="flex-1 min-w-0"><p className="text-[12px] font-bold text-white/80">{b.c}</p></div>
-                  <div className="hidden sm:block"><Addr a={b.a} tc="#10B981" full /></div>
-                  <span className={cn("text-[8px] font-bold px-2 py-0.5 rounded", b.k==='STABLE'?'text-[#10B981] bg-[#10B981]/10':b.k==='MAJOR'?'text-[#3B82F6] bg-[#3B82F6]/10':'text-white/80 bg-white/[0.04]')}>{b.k}</span>
+                <div key={b.c} className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:border-white/[0.1] transition-all">
+                  <div className="flex items-center gap-3">
+                    <div className="w-7 h-7 rounded-lg bg-[#059669]/10 flex items-center justify-center shrink-0"><span className="text-[10px] font-black text-[#10B981]">{b.c.slice(0,2)}</span></div>
+                    <div className="flex-1 min-w-0"><p className="text-[12px] font-bold text-white/80">{b.c}</p></div>
+                    <span className={cn("text-[8px] font-bold px-2 py-0.5 rounded", b.k==='STABLE'?'text-[#10B981] bg-[#10B981]/10':b.k==='MAJOR'?'text-[#3B82F6] bg-[#3B82F6]/10':'text-white/80 bg-white/[0.04]')}>{b.k}</span>
+                  </div>
+                  <div className="mt-2 pl-10 overflow-x-auto"><Addr a={b.a} tc="#10B981" full /></div>
                 </div>
               ))}</div>
             </div></Reveal>
@@ -412,7 +416,7 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
       {/* ═══════════════════════════════════════ */}
       {/* ISIN + VR + BRIDGE                      */}
       {/* ═══════════════════════════════════════ */}
-      <section id="assets" className="py-28 lg:py-36 px-5 lg:px-10">
+      <section id="assets" className="py-16 sm:py-28 lg:py-36 px-4 sm:px-5 lg:px-10">
         <div className="max-w-[1400px] mx-auto">
           <Reveal><SH badge="Financial Instruments" title="ISIN & ViewsRight" sub="Institutional securities and intellectual property — tokenized with ISO 20022 compliance." light /></Reveal>
 
@@ -427,32 +431,38 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
             ))}
           </div></Reveal>
 
-          <Reveal delay={0.1}><div className="grid sm:grid-cols-2 gap-3 mb-20">
+          <Reveal delay={0.1}><div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-20">
             {VRS.map(vr => { const Icon = vr.icon; return (
-              <div key={vr.id} className="group p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-[#7C3AED]/30 hover:bg-white/[0.04] transition-all duration-300 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7C3AED]/15 to-[#7C3AED]/5 border border-[#7C3AED]/10 flex items-center justify-center shrink-0"><Icon size={20} className="text-[#A855F7]" /></div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap mb-1"><span className="text-[14px] font-bold text-white/90">{vr.n}</span><span className="text-[9px] font-bold px-2 py-0.5 rounded-md text-[#A855F7] bg-[#7C3AED]/10">{vr.cat}</span></div>
-                  <div className="font-mono text-[10px] text-white/70 mb-2">{vr.id}</div>
-                  <p className="text-[11px] text-white/80 leading-[1.7]">{vr.d}</p>
+              <div key={vr.id} className="group p-5 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-[#7C3AED]/30 hover:bg-white/[0.04] transition-all duration-300">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#7C3AED]/15 to-[#7C3AED]/5 border border-[#7C3AED]/10 flex items-center justify-center shrink-0"><Icon size={18} className="text-[#A855F7]" /></div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap"><span className="text-[13px] sm:text-[14px] font-bold text-white/90">{vr.n}</span><span className="text-[9px] font-bold px-2 py-0.5 rounded-md text-[#A855F7] bg-[#7C3AED]/10">{vr.cat}</span></div>
+                    <div className="font-mono text-[10px] text-white/70 mt-0.5">{vr.id}</div>
+                  </div>
                 </div>
+                <p className="text-[11px] text-white/80 leading-[1.7]">{vr.d}</p>
               </div>
             ); })}
           </div></Reveal>
 
-          <Reveal delay={0.1}><div className="grid sm:grid-cols-3 gap-3">
-            <div className="sm:col-span-2 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+          <Reveal delay={0.1}><div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="sm:col-span-2 p-5 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
               <h3 className="text-lg font-black mb-5 text-white/80">Cross-Chain Bridge</h3>
               <div className="space-y-2">{BRIDGES.map(b => (
-                <div key={b.ch} className="flex items-center justify-between p-3.5 rounded-xl bg-black/20 border border-white/[0.04]">
-                  <div className="flex items-center gap-3"><div className="w-2.5 h-2.5 rounded-full" style={{ background: b.c }} /><span className="text-[12px] font-bold text-white/80">{b.ch}</span><span className="text-[10px] text-white/80 hidden sm:block">{b.pr}</span></div>
-                  <span className={cn("text-[10px] font-bold px-3 py-1 rounded-lg", b.st ? 'text-[#10B981] bg-[#10B981]/10' : 'text-[#F59E0B] bg-[#F59E0B]/10')}>{b.st ? 'Active' : 'Q4 2026'}</span>
+                <div key={b.ch} className="flex items-center justify-between p-3 sm:p-3.5 rounded-xl bg-black/20 border border-white/[0.04]">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: b.c }} />
+                    <span className="text-[11px] sm:text-[12px] font-bold text-white/80">{b.ch}</span>
+                    <span className="text-[9px] sm:text-[10px] text-white/80 hidden xs:inline">{b.pr}</span>
+                  </div>
+                  <span className={cn("text-[9px] sm:text-[10px] font-bold px-2 sm:px-3 py-1 rounded-lg shrink-0", b.st ? 'text-[#10B981] bg-[#10B981]/10' : 'text-[#F59E0B] bg-[#F59E0B]/10')}>{b.st ? 'Active' : 'Q4 2026'}</span>
                 </div>
               ))}</div>
             </div>
-            <div className="space-y-3">
-              <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex-1"><Lock size={16} className="text-white/90 mb-3" /><h4 className="text-sm font-black text-white/80 mb-1">ZK-SNARKs</h4><p className="text-[10px] text-white/80 leading-[1.7]">Balance proofs, KYC, accredited investor — zero data exposure.</p></div>
-              <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex-1"><Scale size={16} className="text-[#d4a855]/60 mb-3" /><h4 className="text-sm font-black text-white/80 mb-1">Governance</h4><p className="text-[10px] text-white/80 leading-[1.7]">7-day proposals, 10% quorum, 48h timelock. Community treasury.</p></div>
+            <div className="grid grid-cols-2 sm:grid-cols-1 gap-3">
+              <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06]"><Lock size={16} className="text-white/90 mb-3" /><h4 className="text-sm font-black text-white/80 mb-1">ZK-SNARKs</h4><p className="text-[10px] text-white/80 leading-[1.7]">Balance proofs, KYC, accredited investor — zero data exposure.</p></div>
+              <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06]"><Scale size={16} className="text-[#d4a855]/60 mb-3" /><h4 className="text-sm font-black text-white/80 mb-1">Governance</h4><p className="text-[10px] text-white/80 leading-[1.7]">7-day proposals, 10% quorum, 48h timelock. Community treasury.</p></div>
             </div>
           </div></Reveal>
         </div>
@@ -461,7 +471,7 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
       {/* ═══════════════════════════════════════ */}
       {/* WALLETS + API                           */}
       {/* ═══════════════════════════════════════ */}
-      <section id="wallets" className="py-28 lg:py-36 px-5 lg:px-10 bg-[#0f0f12]">
+      <section id="wallets" className="py-16 sm:py-28 lg:py-36 px-4 sm:px-5 lg:px-10 bg-[#0f0f12]">
         <div className="max-w-[1400px] mx-auto">
           <Reveal><SH badge="Account Infrastructure" title="Wallet System & API" sub="Six wallet types from personal to institutional. 30+ REST endpoints." light /></Reveal>
 
@@ -495,7 +505,7 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
       {/* ═══════════════════════════════════════ */}
       {/* ARCHT INTEGRATION                       */}
       {/* ═══════════════════════════════════════ */}
-      <section className="relative py-28 lg:py-36 px-5 lg:px-10 overflow-hidden">
+      <section className="relative py-16 sm:py-28 lg:py-36 px-4 sm:px-5 lg:px-10 overflow-hidden">
         <GlowOrb className="w-[500px] h-[500px] bg-[#d4a855] top-0 left-1/3 opacity-15" />
         <div className="relative z-10 max-w-5xl mx-auto">
           <Reveal><SH badge="Settlement Layer" title="ARCHT Ecosystem" sub="20022Chain settles $5T+ in tokenized mineral reserves across 1,000+ mining operations." light /></Reveal>
@@ -514,7 +524,7 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
       {/* ═══════════════════════════════════════ */}
       {/* ROADMAP                                 */}
       {/* ═══════════════════════════════════════ */}
-      <section id="roadmap" className="py-28 lg:py-36 px-5 lg:px-10 bg-[#0f0f12]">
+      <section id="roadmap" className="py-16 sm:py-28 lg:py-36 px-4 sm:px-5 lg:px-10 bg-[#0f0f12]">
         <div className="max-w-5xl mx-auto">
           <Reveal><SH badge="Timeline" title="Roadmap 2026–2028" light /></Reveal>
           <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -532,7 +542,7 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
       </section>
 
       {/* ── Community links ── */}
-      <div className="py-16 px-5 lg:px-10">
+      <div className="py-12 sm:py-16 px-4 sm:px-5 lg:px-10">
         <Reveal>
           <div className="max-w-md mx-auto flex items-center justify-center gap-4">
             <a href="https://github.com/20022chain-jpg" target="_blank" rel="noopener noreferrer"
@@ -556,11 +566,11 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
       {/* ═══════════════════════════════════════ */}
       {/* CTA                                     */}
       {/* ═══════════════════════════════════════ */}
-      <section id="access" className="py-28 lg:py-36 px-5 lg:px-10 relative overflow-hidden">
+      <section id="access" className="py-16 sm:py-28 lg:py-36 px-4 sm:px-5 lg:px-10 relative overflow-hidden">
         <GlowOrb className="w-[400px] h-[400px] bg-[#3B82F6] -bottom-32 left-1/3 opacity-10" />
         <div className="relative z-10 max-w-lg mx-auto">
           <Reveal>
-            <div className="bg-white/[0.03] border border-white/[0.08] rounded-3xl p-8 sm:p-10 text-center backdrop-blur-xl">
+            <div className="bg-white/[0.03] border border-white/[0.08] rounded-2xl sm:rounded-3xl p-6 sm:p-10 text-center backdrop-blur-xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/[0.04] rounded-full text-[10px] font-bold tracking-[0.2em] text-white/80 mb-6"><Sparkles size={10} /> {t("access.badge")}</div>
               <h2 className="text-2xl sm:text-3xl font-black tracking-tight mb-3">{t("access.title")}</h2>
               <p className="text-sm text-white/80 mb-8">{t("access.subtitle")}</p>
@@ -586,16 +596,16 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
       </section>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-white/[0.04] py-16 px-5 lg:px-10">
-        <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      <footer className="border-t border-white/[0.04] py-10 sm:py-16 px-4 sm:px-5 lg:px-10">
+        <div className="max-w-[1400px] mx-auto flex flex-col items-center gap-5 sm:flex-row sm:justify-between sm:gap-6">
           <div className="flex items-center gap-3">
             <div className="w-7 h-7 rounded-lg bg-white flex items-center justify-center"><span className="font-black text-[#09090b] text-[7px]">20022</span></div>
             <span className="text-xs font-bold text-white/90">20022Chain</span>
             <span className="text-[10px] text-white/70">· {t("footer.part")}</span>
           </div>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-6 sm:gap-8">
             <a href="/whitepaper" className="text-[11px] text-white/80 hover:text-white/90 transition-colors font-medium">Whitepaper</a>
-              <a href="https://github.com/20022chain-jpg" target="_blank" rel="noopener noreferrer" className="text-[11px] text-white/80 hover:text-white/90 transition-colors font-medium">GitHub</a>
+            <a href="https://github.com/20022chain-jpg" target="_blank" rel="noopener noreferrer" className="text-[11px] text-white/80 hover:text-white/90 transition-colors font-medium">GitHub</a>
             <a href="https://x.com/20022chain" target="_blank" rel="noopener noreferrer" className="text-[11px] text-white/80 hover:text-white/90 transition-colors font-medium">X</a>
           </div>
           <span className="text-[10px] text-white/70">&copy; 2026 20022Chain</span>
