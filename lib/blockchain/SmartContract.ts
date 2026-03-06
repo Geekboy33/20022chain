@@ -1440,14 +1440,14 @@ class ContractManager {
     // ═══════════════════════════════════════════════════════
     // NEW: MUSICIAN / ARTIST
     // ═══════════════════════════════════════════════════════
-    const musicContract = base('Drake Royalty Token', 'Tokenized music royalties for the album "For All The Dogs". Automated quarterly distribution.', 'token', 'rwa_token', 'Drake / OVO Sound', 0, 'VIEWSRIGHT', '/logos/music-drake.svg');
-    musicContract.verification = verify({ kyc: true, kyb: true, isin: false, audit: true, lei: false, iso: false, by: 'ASCAP / BMI', entity: 'MUSICIAN', category: 'Hip-Hop', seal: 'VR_VERIFIED' });
+    const musicContract = base('Ava Solaris Royalty Token', 'Tokenized music royalties for the album "Neon Horizons". Automated quarterly distribution.', 'token', 'rwa_token', 'Ava Solaris / Solaris Records', 0, 'VIEWSRIGHT', '/logos/music-solaris.svg');
+    musicContract.verification = verify({ kyc: true, kyb: true, isin: false, audit: true, lei: false, iso: false, by: 'ASCAP / BMI', entity: 'MUSICIAN', category: 'Electronic / Hip-Hop', seal: 'VR_VERIFIED' });
     musicContract.registryType = 'VIEWSRIGHT';
     musicContract.viewsRight = {
-      title: 'For All The Dogs — Royalty Token',
+      title: 'Neon Horizons — Royalty Token',
       workType: 'MUSIC', category: 'ORIGINAL',
-      creatorName: 'Aubrey Drake Graham', creatorAddress: this.generateOwnerAddress('Drake'),
-      coCreators: [{ name: 'Noah Shebib (Producer)', share: 15, address: this.generateOwnerAddress('Noah Shebib') }],
+      creatorName: 'Ava Solaris', creatorAddress: this.generateOwnerAddress('Ava Solaris'),
+      coCreators: [{ name: 'Kai Rhythm (Producer)', share: 15, address: this.generateOwnerAddress('Kai Rhythm') }],
       registrationNumber: 'VR-2025-MUS-0001', registrationDate: '2025-01-15', expirationDate: '2095-01-15',
       jurisdiction: 'US', copyrightOffice: 'US Copyright Office',
       rightsType: 'EXCLUSIVE', licensingTerms: 'Revenue share from streaming, sync licensing, and merchandise.',
@@ -1457,19 +1457,19 @@ class ContractManager {
       royaltyRate: 8.5, royaltyFrequency: 'QUARTERLY',
       totalRoyaltiesEarned: 12500000, totalDistributions: 8,
       royaltyRecipients: [
-        { name: 'Drake', share: 60, address: this.generateOwnerAddress('Drake') },
-        { name: 'OVO Sound', share: 25, address: this.generateOwnerAddress('OVO Sound') },
+        { name: 'Ava Solaris', share: 60, address: this.generateOwnerAddress('Ava Solaris') },
+        { name: 'Solaris Records', share: 25, address: this.generateOwnerAddress('Solaris Records') },
         { name: 'Token Holders', share: 15, address: this.generateOwnerAddress('Pool') },
       ],
-      fingerprint: 'sha256:musicdrake2025aabbccdd00112233445566778899aabb',
-      ipfsHash: 'QmDrakeAlbum2025ForAllTheDogs',
-      timestampProof: 'block:412:tx:0xdrake2025',
+      fingerprint: 'sha256:musicsolaris2025aabbccdd00112233445566778899aabb',
+      ipfsHash: 'QmSolarisAlbum2025NeonHorizons',
+      timestampProof: 'block:412:tx:0xsolaris2025',
       wipo: true, dmcaProtected: true,
       estimatedValue: 45000000, lastValuationDate: '2025-06-01',
       licensingRevenue: 18000000, activeContracts: 312,
       description: 'Fractional ownership of royalty streams from one of the highest-grossing albums of 2025.',
-      tags: ['music', 'hip-hop', 'royalties', 'streaming', 'drake'],
-      externalUrls: ['https://ovoSound.com'],
+      tags: ['music', 'electronic', 'royalties', 'streaming', 'solaris'],
+      externalUrls: ['https://solarisrecords.io'],
       thumbnailUrl: '',
     };
     this.contracts.set(musicContract.id, musicContract);
@@ -1477,8 +1477,8 @@ class ContractManager {
     // ═══════════════════════════════════════════════════════
     // NEW: INFLUENCER
     // ═══════════════════════════════════════════════════════
-    const influencerContract = base('MrBeast Social Token', 'Social engagement token backed by content revenue and brand deals. Holders get exclusive access.', 'token', 'rwa_token', 'MrBeast / Beast Industries', 0, 'CONTRACT', '/logos/influencer-beast.svg');
-    influencerContract.verification = verify({ kyc: true, kyb: true, isin: false, audit: true, lei: true, iso: false, by: 'YouTube Verified / Night Media', entity: 'INFLUENCER', category: 'Content Creator', seal: 'PRO_VERIFIED', license: 'YT-PARTNER-PREMIUM' });
+    const influencerContract = base('NovaCast Social Token', 'Social engagement token backed by content revenue and brand deals. Holders get exclusive access.', 'token', 'rwa_token', 'NovaCast / Nova Industries', 0, 'CONTRACT', '/logos/influencer-nova.svg');
+    influencerContract.verification = verify({ kyc: true, kyb: true, isin: false, audit: true, lei: true, iso: false, by: 'Platform Verified / Nova Media', entity: 'INFLUENCER', category: 'Content Creator', seal: 'PRO_VERIFIED', license: 'YT-PARTNER-PREMIUM' });
     this.contracts.set(influencerContract.id, influencerContract);
 
     // ═══════════════════════════════════════════════════════
@@ -1530,7 +1530,7 @@ class ContractManager {
     // ═══════════════════════════════════════════════════════
     // NEW: DEVELOPER
     // ═══════════════════════════════════════════════════════
-    const devContract = base('OpenAI Protocol Token', 'Open-source AI training protocol. Verified developer entity with professional license.', 'token', 'governance', 'OpenAI Foundation', 0, 'CONTRACT', '/logos/dev-openai.svg');
+    const devContract = base('NeuralForge Protocol Token', 'Open-source AI training protocol. Verified developer entity with professional license.', 'token', 'governance', 'NeuralForge Foundation', 0, 'CONTRACT', '/logos/dev-neuralforge.svg');
     devContract.verification = verify({ kyc: true, kyb: true, isin: false, audit: true, lei: true, iso: true, by: 'Linux Foundation / Trail of Bits', entity: 'DEVELOPER', category: 'AI Infrastructure', seal: 'PRO_VERIFIED', license: 'OSS-AUDIT-2025-001' });
     this.contracts.set(devContract.id, devContract);
 

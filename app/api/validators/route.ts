@@ -10,6 +10,7 @@ export async function GET() {
       return NextResponse.json(data);
     } catch (e) {
       console.error('[validators] Rust backend unavailable:', e);
+      return NextResponse.json({ validators: [], totalStaked: 0, activeCount: 0 });
     }
   }
   try {

@@ -6,6 +6,22 @@ import { I18nProvider } from "@/lib/i18n";
 export const metadata: Metadata = {
   title: "20022Chain — ISO 20022 RWA Blockchain",
   description: "The world's first ISO 20022-native blockchain for Real World Asset tokenization. Block explorer, wallets, smart contracts, and cross-chain bridges.",
+  metadataBase: new URL("https://20022chain.com"),
+  openGraph: {
+    title: "20022Chain — ISO 20022 RWA Blockchain",
+    description: "The world's first ISO 20022-native blockchain for institutional Real World Asset settlement.",
+    url: "https://20022chain.com",
+    siteName: "20022Chain",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@20022chain",
+    title: "20022Chain — ISO 20022 RWA Blockchain",
+  },
+  alternates: {
+    canonical: "https://20022chain.com",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

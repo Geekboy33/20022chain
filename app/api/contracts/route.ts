@@ -41,9 +41,10 @@ export async function GET(request: NextRequest) {
 
 // POST /api/contracts — Compile, Deploy, or AI Generate
 export async function POST(request: NextRequest) {
-  const mgr = getContractManager();
-  const body = await request.json();
-  const { action } = body;
+  try {
+    const mgr = getContractManager();
+    const body = await request.json().catch(() => ({}));
+    const { action } = body;
 
   // COMPILE
   if (action === 'compile') {
@@ -133,5 +134,9 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  return NextResponse.json({ error: 'Invalid action. Use: compile, deploy, generate, audit, execute' }, { status: 400 });
+    return NextResponse.json({ error: 'Invalid action. Use: compile, deploy, generate, audit, execute' }, { status: 400 });
+  } catch (e) {
+    console.error('[contracts] POST error:', e);
+    return NextResponse.json({ error: 'Contracts service unavailable' }, { status: 503 });
+  }
 }

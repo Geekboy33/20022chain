@@ -43,11 +43,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: `Invalid rwaType. Use: ${validTypes.join(', ')}` }, { status: 400 });
   }
 
-  const chain = getChain();
-  const db = getDB();
-  const mgr = getContractManager();
-
   try {
+    const chain = getChain();
+    const db = getDB();
+    const mgr = getContractManager();
     // ── STEP 1: Generate addresses ──
     const contractAddress = chain.generateContractAddress(name);
     const isinContractAddress = chain.generateContractAddress(`isin-${name}`);

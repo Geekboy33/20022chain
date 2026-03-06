@@ -26,6 +26,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(data);
     } catch (e) {
       console.error('[blocks] Rust backend unavailable:', e);
+      return NextResponse.json({ blocks: [], total: 0 });
     }
   }
 

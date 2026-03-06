@@ -40,6 +40,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(data);
     } catch (e) {
       console.error('[transactions] Rust backend unavailable:', e);
+      return NextResponse.json({ transactions: [], pending: 0 });
     }
   }
 

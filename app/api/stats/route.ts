@@ -11,6 +11,16 @@ export async function GET() {
       return NextResponse.json(data);
     } catch (e) {
       console.error('[stats] Rust backend unavailable:', e);
+      return NextResponse.json({
+        txVolume: [],
+        isoDistribution: {},
+        rwaDistribution: {},
+        topAccounts: [],
+        uniqueAccounts: 0,
+        totalSupply: 100000000,
+        circulatingSupply: 0,
+        pendingTxCount: 0,
+      });
     }
   }
   try {

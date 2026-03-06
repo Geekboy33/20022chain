@@ -31,6 +31,7 @@ export async function GET(request: NextRequest) {
       });
     } catch (e) {
       console.error('[isin] Rust backend unavailable:', e);
+      return NextResponse.json({ registry: [], count: 0, totalMarketCap: 0 });
     }
   }
 

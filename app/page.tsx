@@ -552,7 +552,7 @@ function Explorer() {
   <div className="bg-white border border-[#e8e8e8] rounded-2xl overflow-hidden">
     <div className="h-14 px-6 border-b border-[#e8e8e8] flex items-center justify-between">
       <div className="flex items-center gap-3"><Box size={16} className="text-[#00C853]" /><span className="text-sm font-bold">Blocks</span><span className="text-xs text-[#999] font-mono">{blocks.length} loaded</span></div>
-      <button onClick={fetchAll} className="flex items-center gap-1.5 text-xs text-[#999] hover:text-[#0a0a0a]"><RefreshCw size={12} /> Refresh</button>
+      <button onClick={() => fetchAll()} className="flex items-center gap-1.5 text-xs text-[#999] hover:text-[#0a0a0a]"><RefreshCw size={12} /> Refresh</button>
     </div>
     <div className="grid grid-cols-[80px_1fr_220px_80px_90px_80px_60px] gap-3 px-6 py-2.5 bg-[#f7f7f7] text-[9px] font-bold text-[#aaa] uppercase tracking-widest border-b border-[#e8e8e8]">
       <span>Block</span><span>Validator</span><span>Block Hash</span><span>Txns</span><span>Gas</span><span>Reward</span><span>Age</span>
