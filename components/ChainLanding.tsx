@@ -579,7 +579,7 @@ export function ChainLanding({ onLogin }: ChainLandingProps) {
                   <CheckCircle2 size={32} className="mx-auto text-[#10B981] mb-3" />
                   <p className="text-sm font-bold mb-1">{t("access.granted")}</p>
                   <p className="text-xs text-white/80 mb-4">{t("access.sentTo")} <span className="font-semibold text-white/80">{email}</span></p>
-                  <div className="p-4 bg-black/40 rounded-xl text-left font-mono text-[11px] mb-4"><div className="text-[#d4a855]">{email}</div><div className="text-white/90 mt-1">Password: chain2026</div></div>
+                  <div className="p-4 bg-black/40 rounded-xl text-left font-mono text-[11px] mb-4"><div className="text-[#d4a855]">{email}</div><div className="text-white/90 mt-1">Access credentials sent to your email</div></div>
                   <button onClick={onLogin} className="h-11 px-8 bg-white text-[#09090b] text-xs font-bold rounded-xl hover:bg-white/90 transition-all inline-flex items-center gap-2"><Lock size={12} /> {t("access.enterNow")}</button>
                 </div>
               ) : (

@@ -35,7 +35,8 @@ export function ChainAuthProvider({ children }: { children: React.ReactNode }) {
   const login = useCallback(async (email: string, password: string) => {
     setIsLoading(true);
     await new Promise(r => setTimeout(r, 800));
-    if (password === 'chain2026' && email.includes('@')) {
+    const demoPass = process.env.NEXT_PUBLIC_DEMO_PASS || 'demo';
+    if (password === demoPass && email.includes('@')) {
       const u: ChainUser = {
         id: `u-${Date.now()}`,
         email: email.toLowerCase().trim(),
