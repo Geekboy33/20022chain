@@ -8,7 +8,7 @@ export type Locale = typeof LOCALES[number];
 export const LANG_META: Record<Locale, { label: string; flag: string }> = {
   en: { label: "English", flag: "🇺🇸" },
   es: { label: "Español", flag: "🇪🇸" },
-  ar: { label: "العربية", flag: "🇸🇦" },
+  ar: { label: "العربية", flag: "🇦🇪" },
   zh: { label: "中文", flag: "🇨🇳" },
   ru: { label: "Русский", flag: "🇷🇺" },
   fr: { label: "Français", flag: "🇫🇷" },
